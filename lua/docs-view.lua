@@ -112,7 +112,11 @@ M.setup = function(user_cfg)
 
   cfg = vim.tbl_extend("force", default_cfg, user_cfg)
 
-  if vim.fn.has("nvim-0.8.0") then
+  if vim.fn.has("nvim-0.11.0") then
+    get_clients = function()
+      return vim.lsp.get_clients()
+    end
+  elseif vim.fn.has("nvim-0.8.0") then
     get_clients = function()
       return vim.lsp.get_active_clients()
     end
