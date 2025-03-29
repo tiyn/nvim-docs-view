@@ -27,7 +27,8 @@ M.update = function()
   }, function(err, result, ctx, config)
     if win and vim.api.nvim_win_is_valid(win) and result and result.contents then
       local md_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
-      md_lines = vim.gsplit(table.concat(md_lines,"\n"), "\n", { trimempty = true })
+      local md_lines_str = table.concat(md_lines,"\n")
+      md_lines = vim.gsplit(md_lines_str, "\n", { trimempty = true })
       if vim.tbl_isempty(md_lines) then
         return
       end
